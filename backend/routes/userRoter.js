@@ -1,7 +1,7 @@
 import Router from 'express';
-import UserController from '../controllers/UserController.js';
+import UserController from '../controllers/userController.js';
 import { check } from 'express-validator';
-import checkToken from '../middleware/UserMiddleware.js'
+import checkToken from '../middleware/userMiddleware.js'
 
 const userRouter = new Router();
 

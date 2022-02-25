@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import userRouter from './routes/userRoter.js';
-
+import weatherRouter from './routes/weatherRouter.js';
 
 const PORT = 3000;
 const URL = "mongodb://localhost:27017/usersdb";

@@ -1,4 +1,4 @@
-import User from '../models/UserModel.js'
+import User from '../models/userModel.js'
 import bcrypt from 'bcrypt';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
@@ -34,9 +34,9 @@ class UserController {
             password: hashedPassword,
             });
             res.json(user);
-            } catch (err) {
-                res.status(400).json({message: 'Registration error'})
-            }
+        } catch (err) {
+            res.status(400).json({message: 'Registration error'})
+        }
     }
 
     async loginUser(req, res) {
@@ -44,7 +44,7 @@ class UserController {
             const { email, password } = req.body;
             const user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ message: `${email} not found` })
+                return res.status(404).json({ message: `${email} not found` })
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {
@@ -90,7 +90,7 @@ class UserController {
             const { email, password } = req.body;
             const user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ message: `${email} not found` })
+                return res.status(404).json({ message: `${email} not found` })
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {

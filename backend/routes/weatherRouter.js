@@ -1,22 +1,10 @@
 import Router from 'express';
-import testAppController from '../controllers/testAppController.js';
-import { check } from 'express-validator';
-import checkToken from '../middleware/testAppMiddleware.js'
+import WeatherController from '../controllers/weatherController.js';
 
-const userRouter = new Router();
 
-userRouter.post('/registration', [
-    check('email', 'Email cannot be empty').notEmpty(),
-    check('password', 'min length 6').isLength({min:6})
-], testAppController.registrationUser);
+const weatherRouter = new Router();
 
-userRouter.post('/login', testAppController.loginUser);
-
-userRouter.get('/', testAppController.getAll);
-userRouter.get('/:id', testAppController.getUser);
-userRouter.put('/', checkToken, testAppController.updateUser);
-userRouter.delete('/', checkToken, testAppController.deleteUser);
-
+weatherRouter.post('/current', WeatherController.getWeather);
 
 
 export default weatherRouter;
