@@ -1,13 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import {SERVER_PORT, URL} from './config/config.js'
 import userRouter from './routes/userRoter.js';
 import weatherRouter from './routes/weatherRouter.js';
 
-const PORT = 3000;
-const URL = "mongodb://localhost:27017/usersdb";
+// dotenv.config();
+const PORT = SERVER_PORT || 3000;
 const app = express();
 
-mongoose.connect(URL, { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.use(express.json());
 app.use('/api', userRouter);

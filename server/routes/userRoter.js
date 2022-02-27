@@ -14,8 +14,9 @@ userRouter.post('/login', UserController.loginUser);
 
 userRouter.get('/', UserController.getAll);
 userRouter.get('/:id', UserController.getUser);
-userRouter.put('/', checkToken, UserController.updateUser);
-userRouter.delete('/', checkToken, UserController.deleteUser);
+userRouter.put('/user', checkToken, UserController.updateUser);
+userRouter.put('/user/remove', checkToken, UserController.removeCities);
+userRouter.delete('/user', checkToken, UserController.deleteUser);
 
 
 

@@ -59,6 +59,7 @@ class UserController {
         }
     }
 
+    
     //find all users
     async getAll (req, res) {
         try {
@@ -104,23 +105,47 @@ class UserController {
     }
 
 
-    // update user
+// update user and cities
   async updateUser (req, res) {
-    try {
-        const { email, password } = req.body;
-        const user = await User.findOne({ email });
-            if (!user) {
-                return res.status(404).json({ message: `${email} not found` })
-            }
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        const newPassword = { password: hashedPassword };
-        await User.updateOne({ email }, newPassword);
+      try {
+          const { email, password, cities, degrees } = req.body;
+        
+          const user = await User.findOne({ email });
+        
+          if (!user) {
+              return res.status(404).json({ message: `${email} not found` })
+          }
+          const saltRounds = 10;
+          const hashedPassword = await bcrypt.hash(password, saltRounds);
+          const newPassword = { password: hashedPassword };
+                
+        await User.updateMany({ email }, {$set: newPassword,  $push: { cities: cities }, degrees } );
+          
         return res.json({message: `user ${email} has been updated`})
         } catch (err) {
             res.status(400).json('error')
         }
-  }
+    }
+    
+
+// remove cities
+  async removeCities (req, res) {
+    try {
+        const { email, cities } = req.body;
+      
+        const user = await User.findOne({ email });
+      
+        if (!user) {
+            return res.status(404).json({ message: `${email} not found` })
+        }
+
+      await User.updateOne({ email }, { $pull: { cities: cities } } );
+        
+      return res.json({message: `user ${email} has been updated`})
+      } catch (err) {
+          res.status(400).json('error')
+      }
+}
 }
 
 export default new UserController();

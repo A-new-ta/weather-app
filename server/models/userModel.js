@@ -1,5 +1,6 @@
+import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
-import { ObjectId } from 'mongodb'
+// import { ObjectId } from 'mongodb'
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -11,9 +12,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    cities: { type: String },
+    cities: { type: [String] },
+    
     degrees: {
-        type: String
+        type: String, default: 'C'
     }
 })
 

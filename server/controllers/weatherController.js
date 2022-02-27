@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { baseURL, apiKey } from '../config/config.js';
 
-const baseURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-const apiKey = "PNZ3T4M6BDAC6ZCZ69SLXRXXQ"
 
 const generateString = (location) => {
     return `${baseURL + location}?unitGroup=metric&include=current&lang=en&` + 
