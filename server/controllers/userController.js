@@ -1,8 +1,11 @@
 import User from '../models/userModel.js'
 import bcrypt from 'bcrypt';
+import nodemailer from 'nodemailer';
+import { v4 as uuidv4 } from 'uuid';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import {SECRET_KEY, JWT_TOKEN_LIFE_TIME} from '../config/config.js'
+import {SECRET_KEY, JWT_TOKEN_LIFE_TIME, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL, CLIENT_URL} from '../config/config.js'
+// import MailService from '../service/mailService.js';
 
 
 const generateAccessToken = (id) => {
@@ -11,6 +14,35 @@ const generateAccessToken = (id) => {
     }
     return jwt.sign(payload, SECRET_KEY, {expiresIn: JWT_TOKEN_LIFE_TIME})
 }
+
+const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: false,
+    auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASSWORD
+    }
+})
+
+const sendActivationMail = async function(to, link) {
+        
+    await transporter.sendMail({
+        from: SMTP_USER,
+        to: to,
+        subject: 'Account activation on ' + API_URL,
+        text: '',
+        html:
+            `
+            <div>
+                <h1>To activate your account follow the link</h1>
+                <a href='${link}'>${link}</a>
+            </div>
+            `
+    
+    })
+}
+
 
 
 class UserController {
@@ -29,10 +61,15 @@ class UserController {
             }
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(password, saltRounds);
+            const activationLink = uuidv4();            
             const user = await User.create({
             email: email,
             password: hashedPassword,
+            activationLink
             });
+            
+            await sendActivationMail(email, `${API_URL}/api/activate/${activationLink}`);
+            
             res.json(user);
         } catch (err) {
             res.status(400).json({message: 'Registration error'})
@@ -145,7 +182,23 @@ class UserController {
       } catch (err) {
           res.status(400).json('error')
       }
-}
+    }
+//mail activation
+    async activate(req, res) {
+        try {
+            const activationLink = req.params.link;
+
+            const user = await User.findOne({ activationLink });
+            if (!user) {
+                return res.status(404).json({ message: `${email} not found` })
+            }
+            user.isActivated = true;
+            await user.save();
+            return res.redirect(CLIENT_URL);
+        } catch(err) {
+            res.status(400).json({message: 'Activation error'})
+        }
+    }
 }
 
 export default new UserController();

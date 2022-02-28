@@ -1,5 +1,6 @@
 import Router from 'express';
 import UserController from '../controllers/userController.js';
+
 import { check } from 'express-validator';
 import checkToken from '../middleware/userMiddleware.js'
 
@@ -11,6 +12,7 @@ userRouter.post('/registration', [
 ], UserController.registrationUser);
 
 userRouter.post('/login', UserController.loginUser);
+userRouter.get('/activate/:link', UserController.activate);
 
 userRouter.get('/', UserController.getAll);
 userRouter.get('/:id', UserController.getUser);
