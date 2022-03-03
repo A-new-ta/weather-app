@@ -1,0 +1,21 @@
+.header {
+    background-image: url('../../assets/header_background.jpg');
+    height: 180px;
+    display: flex;
+    padding: 0 40px;
+    overflow: hidden;
+    align-items: center;
+    background-size: cover;
+    justify-content: space-between;
+}
+
+.header p {
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.header .MuiButton-outlined {
+    margin-right: 10px;
+    border-radius: 20px;
+    padding: 15px 20px;
+}
