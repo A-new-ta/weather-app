@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import AuthModal from '../AuthModal/AuthModal';
-import './AuthButton.css';
+// import './AuthButton.css';
 
 
 const AuthButton = () => {
@@ -18,7 +18,7 @@ const AuthButton = () => {
         <>
             <Button
                 variant='outlined'
-                className='AuthButton'
+                className='auth-button'
                 onClick={openModal}
             >
                 Sign In

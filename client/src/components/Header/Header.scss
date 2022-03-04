@@ -1,12 +1,12 @@
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-image: url('../../assets/header_background.jpg');
     height: 180px;
-    display: flex;
     padding: 0 40px;
     overflow: hidden;
-    align-items: center;
     background-size: cover;
-    justify-content: space-between;
 }
 
 .header p {

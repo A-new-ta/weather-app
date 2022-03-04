@@ -7,7 +7,6 @@ import  CloseIcon  from '@material-ui/icons/Close'
 const AuthModal = (props) => {
     
     return (
-    
         <Dialog 
             open={props.visible}
             onClose={props.onClose}
@@ -17,11 +16,9 @@ const AuthModal = (props) => {
                 <IconButton 
                     aria-label='close'
                     onClick={props.onClose}
-                    
                 >
                     <CloseIcon/>
                 </IconButton>
-                
                         <form>
                             <TextField
                                 label='Email'
@@ -39,7 +36,6 @@ const AuthModal = (props) => {
                             <Button
                                 variant='outlined'
                                 type='submit'
-                        
                             >
                                 Sing In
                             </Button>
@@ -50,12 +46,8 @@ const AuthModal = (props) => {
                                 Sign Up
                             </Button>
                         </form>
-                    
             </DialogContent>
-            
-            
             </Dialog>
-            
     )
 }
 

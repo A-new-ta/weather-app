@@ -28,3 +28,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.layout {
+  background-image: url('../src/assets/world_map.jpg');
+}
+
+.layout.dark {
+  background-image: url('../src/assets/world_map_dark.jpg');
+}

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './Header.css';
+import './Header.scss';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import SearchForm from '../SearchForm/SearchForm';
-import SwitcherDegrees from '../SwitcherDegrees/SwitcherDegrees';
+import Switcher from '../shared/Switcher';
 import { IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu'
-import RightMenu from '../RightMenu/RightMenu';
 import AuthButton from '../AuthButton/AuthButton';
+import SideBar from '../SideBar/SideBar';
 
 const Header = () => {
     
@@ -23,12 +23,17 @@ const Header = () => {
             <p>WeatherApp</p>
             <WeatherCard/>
             <SearchForm />
-            <SwitcherDegrees />
+            <Switcher
+                label={'°C | °F'}
+                labelPlacement={'top'}
+                value={'degrees'}
+            />
+                
             <AuthButton/>
             <IconButton onClick={openMenu}>
                 <MenuIcon/>
             </IconButton>
-            <RightMenu
+            <SideBar
                 menuState={menuState}
                 openMenu={openMenu}
                 closeMenu={closeMenu}

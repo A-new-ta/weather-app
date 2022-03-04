@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import SearchInput from '../SearchInput/SearchInput';
-import './SearchForm.css';
+import './SearchForm.scss';
 
 const SearchForm = () => {
     
     return (
-        <div className='SearchForm'>
+        <div className='search-form'>
             <SearchInput />
             <Button
                 variant='outlined'

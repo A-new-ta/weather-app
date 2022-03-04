@@ -4,15 +4,16 @@ import { FormControlLabel, FormControl } from '@material-ui/core';
 
 
 
-const SwitcherDegrees = () => {
+const Switcher = (props) => {
     
     return (
         <FormControl>
             <FormControlLabel
-                value="degrees"
+                value={props.value}
                 control={<Switch color='default' />}
-                label="°C | °F"
-                labelPlacement="top"
+                label={props.label}
+                labelPlacement={props.labelPlacement}
+                onChange={props.onChange}
             />
         </FormControl>
         
@@ -20,4 +21,4 @@ const SwitcherDegrees = () => {
 }
 
 
-export default SwitcherDegrees;
+export default Switcher;
