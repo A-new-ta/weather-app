@@ -1,16 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import cn from 'classnames';
-import useTheme from '../../hooks/useTheme';
+import { ThemeContext } from '../../context/ThemeProvider';
 
 const Layout = ({ children }) => {
-    const { isDark } = useTheme();
-    return <div
-        className={cn('layout',
-            {
-                dark: isDark,
-            })}
-    >
-        {children}</div>
+    const { isDark } = useContext(ThemeContext);
+    return <div className={cn('layout', { dark: isDark })}>
+        {children}
+    </div>
 }
 
 export default Layout

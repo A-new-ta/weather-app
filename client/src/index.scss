@@ -29,10 +29,23 @@ code {
     monospace;
 }
 
-.layout {
-  background-image: url('../src/assets/world_map.jpg');
-}
 
 .layout.dark {
+  background-color: black;
+  color: rgb(228, 228, 228);
+}
+.layout.dark .main {
   background-image: url('../src/assets/world_map_dark.jpg');
 }
+.layout.dark .header {
+  background-image: url('../src/assets/header_black.jpg');
+}
+.layout.dark .footer {
+  background-color: #181818;
+}
+.layout.dark .MuiButton-root{
+  color: rgb(228, 228, 228);
+}
+
+
+

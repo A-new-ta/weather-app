@@ -8,14 +8,10 @@ const SearchForm = () => {
     return (
         <div className='search-form'>
             <SearchInput />
-            <Button
-                variant='outlined'
-            >
+            <Button variant='outlined'>
                 Card
             </Button>
-            <Button
-                variant='outlined'
-            >           
+            <Button variant='outlined'>           
                 Favourite
             </Button>
         </div>

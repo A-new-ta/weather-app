@@ -4,7 +4,7 @@ import { baseURL, apiKey } from '../config/config.js';
 
 const generateString = (location) => {
     return `${baseURL + location}?unitGroup=metric&include=current&lang=en&` + 
-            `key=${apiKey}&contentType=json`
+        `key=${apiKey}&contentType=json`
 }
     
 class WeatherController {

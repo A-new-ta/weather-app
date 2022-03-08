@@ -1,0 +1,19 @@
+
+.weather-card-main .weather-card-main-card{
+    max-width: 1024px;
+    margin: 0 auto;
+    height: 285px;
+    display: flex;
+    position: relative;
+    min-width: 300px;
+    align-items: center;
+    border-radius: 40px;
+    justify-content: center;
+    background-color: #F0F0F0;
+}
+
+.weather-card-main.dark .weather-card-main-card{
+    background-color: #333333;
+}
+
+

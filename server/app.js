@@ -8,7 +8,7 @@ import weatherRouter from './routes/weatherRouter.js';
 
 
 // dotenv.config();
-const PORT = SERVER_PORT || 3000;
+const PORT = SERVER_PORT || 5000;
 const app = express();
 
 

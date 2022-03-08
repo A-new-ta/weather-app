@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SwipeableDrawer, Divider, IconButton } from '@material-ui/core';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Switcher from '../shared/Switcher';
 import ZipCode from '../ZipCode/ZipCode';
 import AuthButton from '../AuthButton/AuthButton';
-import useTheme from '../../hooks/useTheme';
+import cn from 'classnames';
 import './SideBar.scss';
+import { AppContext } from '../../context/context';
+import { ThemeContext } from '../../context/ThemeProvider';
 
 
 const SideBar = (props) => {
-    const { isDark, setIsDark } = useTheme();
+    const { fahrenheit, toggleFahrenheit } = useContext(AppContext);
+    const changeDegrees = () => {
+        fahrenheit === '°C' ? toggleFahrenheit('°F') : toggleFahrenheit('°C')
+    }
+    const { isDark, setIsDark } = useContext(ThemeContext);
+    
     return (
-        <SwipeableDrawer 
+        <SwipeableDrawer className={cn('swipeable-drawer', {dark: isDark})}
             anchor="right"
             open={props.menuState}
             onClose={props.closeMenu}
             onOpen={props.openMenu}
         >
             <div className='sidebar'>
-                <button
+                <div
                     onClick={props.closeMenu}
                     role='button'
                     tabIndex={0}
@@ -26,11 +33,11 @@ const SideBar = (props) => {
                     <IconButton>
                         <ChevronRightIcon/>
                     </IconButton>
-                </button>
+                </div>
                 <Divider />
-                <button className='button'>
+                <div className='button'>
                     <AuthButton/>
-                </button>
+                </div>
                 <Divider />
                 <Switcher
                     label={'Dark theme'}
@@ -42,6 +49,7 @@ const SideBar = (props) => {
                     label={'°C | °F'}
                     labelPlacement={'top'}
                     value={'degrees'}
+                    onChange={changeDegrees}
                 />
                 <ZipCode/>
                 

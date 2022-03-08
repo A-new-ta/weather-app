@@ -3,11 +3,11 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import './App.scss';
-import { ThemeProvider } from './providers/ThemeProvider';
+import { ThemeProvider } from './context/ThemeProvider';
 import Layout from './components/Layout/Layout';
 
-
 function App() {
+  
   return (
     <ThemeProvider>
       <Layout className='layout'>
@@ -16,7 +16,7 @@ function App() {
             <Main />
             <Footer />
           </div>
-        </Layout>
+      </Layout>
     </ThemeProvider>
   );
 }

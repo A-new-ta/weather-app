@@ -6,15 +6,10 @@ const ZipCode = () => {
     
     return (
         <FormControlLabel
-            control={
-                <Checkbox
-                    color='default'
-                />
-        }
+            control={ <Checkbox color='default' /> }
             label='Zip code'
             labelPlacement='top'
         />
-        
     )
 }
 

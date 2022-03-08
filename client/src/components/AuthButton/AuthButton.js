@@ -9,11 +9,9 @@ const AuthButton = () => {
     const openModal = () => {
         setVisible(true)
     }
-
     const closeModal = () => {
         setVisible(false)
     }
-    
     return (
         <>
             <Button

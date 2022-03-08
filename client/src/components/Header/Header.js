@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Header.scss';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import SearchForm from '../SearchForm/SearchForm';
@@ -7,15 +7,19 @@ import { IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu'
 import AuthButton from '../AuthButton/AuthButton';
 import SideBar from '../SideBar/SideBar';
+import { AppContext } from '../../context/context';
 
 const Header = () => {
-    
+    const { fahrenheit, toggleFahrenheit } = useContext(AppContext);
     const [menuState, setMenuState] = useState(false)
     const openMenu = () => {
         setMenuState(true)
     }
     const closeMenu = () => {
         setMenuState(false)
+    }
+    const changeDegrees = () => {
+        fahrenheit === '°C' ? toggleFahrenheit('°F') : toggleFahrenheit('°C')
     }
 
     return (
@@ -27,6 +31,7 @@ const Header = () => {
                 label={'°C | °F'}
                 labelPlacement={'top'}
                 value={'degrees'}
+                onChange={changeDegrees}
             />
                 
             <AuthButton/>
