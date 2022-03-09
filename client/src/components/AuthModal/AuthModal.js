@@ -1,53 +1,56 @@
 import React from 'react';
-import { Button, Dialog, DialogContent, IconButton, TextField } from '@material-ui/core';
+import { Dialog, DialogTitle, IconButton } from '@material-ui/core';
 import  CloseIcon  from '@material-ui/icons/Close'
-
-
+import { useStyles } from './styles'
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import {Tabs, TabList, Tab, TabPanels, TabPanel} from '@reach/tabs'
+import '@reach/tabs/styles.css'
+import './AuthModal.scss'
 
 const AuthModal = (props) => {
+    const { modal, title, closeIcon } = useStyles();
     
+
     return (
         <Dialog 
             open={props.visible}
             onClose={props.onClose}
             aria-labelledby="form-dialog-title"
+            PaperProps={{ className: modal }}
         >
-            <DialogContent >
-                <IconButton 
-                    aria-label='close'
-                    onClick={props.onClose}
-                >
-                    <CloseIcon/>
-                </IconButton>
-                        <form>
-                            <TextField
-                                label='Email'
-                                type='email'
-                                variant='standard'
-                                autoFocus
-                                fullWidth
-                                margin='normal' />
-                            <TextField
-                                label='Password'
-                                type='password'
-                                variant='standard'
-                                fullWidth
-                                margin='normal'/>
-                            <Button
-                                variant='outlined'
-                                type='submit'
-                            >
-                                Sing In
-                            </Button>
-                            <Button
-                                variant='outlined'
-                                type='submit'
-                            >
-                                Sign Up
-                            </Button>
-                        </form>
-            </DialogContent>
+            <DialogTitle>
+                <div className={title}>
+                    <div>
+                        <Tabs
+                            // value={value}
+                            // onChange={handleChange}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            aria-label="full width tabs example"
+                        >
+                            <TabList className='tabsnav'>
+                                <Tab value={'sign_in'} >Sign In</Tab>
+                                <Tab value={'sign_up'} >Sign Up</Tab>
+                                <IconButton 
+                                    aria-label='close'
+                                    onClick={props.onClose}
+                                >
+                                    <CloseIcon className={closeIcon}/>
+                                </IconButton>
+                            </TabList>
+                            <TabPanels>
+                            <TabPanel value={'sign_in'}><SignIn onClose={props.onClose} /></TabPanel>
+                            <TabPanel value={'sign_up'}><SignUp onClose={props.onClose} /></TabPanel>
+                            </TabPanels>
+                        </Tabs>
+                    </div>
+                   
+                    </div>
+            </DialogTitle>
+            
             </Dialog>
+            
     )
 }
 

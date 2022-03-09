@@ -10,16 +10,18 @@
 
 .sidebar .button {
     padding: 10px;
-}
-.sidebar .button {
     margin-left: 100px;
 }
-.swipeable-drawer.dark .MuiPaper-root {
+
+.swipeable-drawer.dark {
+    .MuiPaper-root {
     background-color: rgb(73, 73, 73);
+    }
+    .sidebar {
+        color: white;
+    }
+    .MuiButton-root {
+        color: white;
+    }
 }
-.swipeable-drawer.dark .sidebar{
-    color: white;
-}
-.swipeable-drawer.dark .MuiButton-root{
-    color: white;
-}
+

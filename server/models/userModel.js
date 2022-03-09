@@ -12,11 +12,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    isActivated: {
-        type: Boolean, 
-        default: false
-    },
-    activationLink: { type: String },
+    // isActivated: {
+    //     type: Boolean, 
+    //     default: false
+    // },
+    // activationLink: { type: String },
     
     cities: { type: [String] },
     

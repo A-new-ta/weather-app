@@ -1,0 +1,23 @@
+.tabsnav {
+    background: transparent;
+    display: flex;
+    justify-content: space-around;
+    button {
+        transition: border-bottom-color ease-in-out 0.2s;
+        &:hover {
+            border-bottom-color: rgb(9, 62, 161)
+        }
+    }
+}
+.form-sign {
+    .MuiButton-outlined {
+        border-radius: 20px;
+        margin-top: 30px;
+        padding: 15px 20px;
+    }
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}

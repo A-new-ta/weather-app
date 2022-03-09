@@ -8,7 +8,7 @@ const userRouter = new Router();
 
 userRouter.post('/registration', [
     check('email', 'Email cannot be empty').notEmpty(),
-    check('password', 'min length 6').isLength({min:6})
+    check('password', 'min length 8').isLength({min:8})
 ], UserController.registrationUser);
 
 userRouter.post('/login', UserController.loginUser);

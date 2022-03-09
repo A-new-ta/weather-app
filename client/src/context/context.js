@@ -11,6 +11,7 @@ const Context = ({ children }) => {
     const [city, changeCity] = useState(window.localStorage.getItem('city'))
     const [refreshing, changeRefreshing] = useState([false, "", ""])
     const [isZipCode, changeIsZipCode] = useState(false);
+    
     // data from api weather
     const getData = useCallback( async() => {
         const body = {};

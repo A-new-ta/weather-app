@@ -1,7 +1,7 @@
 import User from '../models/userModel.js'
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import {SECRET_KEY, JWT_TOKEN_LIFE_TIME, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, API_URL, CLIENT_URL} from '../config/config.js'
@@ -52,7 +52,7 @@ class UserController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({message: 'Registration error', errors})
+                return res.status(400).json({errors, message: 'Registration error' })
             }
             const { email, password } = req.body;
             const candidate = await User.findOne({ email });
@@ -61,16 +61,16 @@ class UserController {
             }
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(password, saltRounds);
-            const activationLink = uuidv4();            
+            // const activationLink = uuidv4();
             const user = await User.create({
-            email: email,
-            password: hashedPassword,
-            activationLink
+                email: email,
+                password: hashedPassword,
+                // activationLink
             });
             
-            await sendActivationMail(email, `${API_URL}/api/activate/${activationLink}`);
+            // await sendActivationMail(email, `${API_URL}/api/activate/${activationLink}`);
+            res.json({ user,  message: 'User has been created' });
             
-            res.json(user);
         } catch (err) {
             res.status(400).json({message: 'Registration error'})
         }
@@ -89,7 +89,7 @@ class UserController {
             }
             
             const token = generateAccessToken(user._id);
-            return res.json({ token })
+            return res.json({ token, email: user.email, message: 'SignIn is successfull' })
             
         } catch (err) {
             res.status(400).json({message: 'Login error'})
