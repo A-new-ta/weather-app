@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import SearchInput from '../SearchInput/SearchInput';
 import './SearchForm.scss';
 
+
 const SearchForm = () => {
     
     return (
@@ -11,11 +12,12 @@ const SearchForm = () => {
             <Button variant='outlined'>
                 Card
             </Button>
-            <Button variant='outlined'>           
+            <Button
+                variant='outlined'
+            >           
                 Favourite
             </Button>
         </div>
-        
     )
 }
 

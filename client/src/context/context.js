@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState, useEffect } from 'react';
+import React, { createContext, useCallback, useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
 
@@ -10,7 +10,7 @@ const Context = ({ children }) => {
     const [search, changeSearch] = useState('')
     const [city, changeCity] = useState(window.localStorage.getItem('city'))
     const [refreshing, changeRefreshing] = useState([false, "", ""])
-
+    const [isZipCode, changeIsZipCode] = useState(false);
     // data from api weather
     const getData = useCallback( async() => {
         const body = {};
@@ -54,19 +54,21 @@ const Context = ({ children }) => {
     
     //for local storage
     useEffect(() =>{
-        if(!window.localStorage.getItem("°F")){
-          window.localStorage.setItem("°F", "°C")
-          window.localStorage.setItem("city", "minsk")
+        if(!window.localStorage.getItem('°F')){
+            window.localStorage.setItem('°F', '°C')
+            window.localStorage.setItem('city', 'Minsk')
         } else {
-          toggleFahrenheit(window.localStorage.getItem("°F"))
-          changeCity(window.localStorage.getItem("city"))
+            toggleFahrenheit(window.localStorage.getItem('°F'))
+            changeCity(window.localStorage.getItem('city'))
         }
     }, [])
 
     useEffect(() => {
-        window.localStorage.setItem("°F", fahrenheit)
-      },[fahrenheit])
+        window.localStorage.setItem('°F', fahrenheit)
+    }, [fahrenheit])
     
+    useMemo(() => ({ isZipCode, changeIsZipCode }), [isZipCode]);
+
     return (
         <AppContext.Provider value={{
             data,
@@ -77,7 +79,9 @@ const Context = ({ children }) => {
             handleResultClick,
             handleSubmit,
             refreshing,
-            changeRefreshing
+            changeRefreshing, 
+            isZipCode,
+            changeIsZipCode
         }}>
             {children}
         </AppContext.Provider>
