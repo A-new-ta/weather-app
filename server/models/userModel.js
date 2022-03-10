@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
     
     degrees: {
         type: String, default: 'C'
-    }
+    }, 
+    // favourities: [{type: ObjectId, ref: 'Favourities'}]
 })
 
 

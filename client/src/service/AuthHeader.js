@@ -4,8 +4,8 @@ export default function authHeader() {
     if (emailStr) {
         email = JSON.parse(emailStr)
     }
-    if (email && email.accessToken) {
-        return {'x-access-token': email.accessToken}
+    if (email && email.token) {
+        return {'x-access-token': email.token}
     } else {
         return {}
     }

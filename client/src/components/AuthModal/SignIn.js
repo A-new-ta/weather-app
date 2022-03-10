@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
+import { Alert } from '@mui/material';
 import { Formik } from 'formik';
 import { signInValidation } from './validationSchema';
 import AuthService from '../../service/AuthService';
 
 const SignIn = ({onClose}) => {
+
+    const [successful, setSuccessful] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const handleLogin = (email, password) => {
+        setMessage('');
+        setSuccessful(false);
+        AuthService.signIn(email, password).then(
+            (response) => {
+                console.log(response.message)
+                // setMessage(response.message);
+                setSuccessful(true)
+                console.log(successful)
+            },
+            (error) => {
+                const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+                console.log(resMessage)
+                setMessage(resMessage);
+                setSuccessful(false);
+                console.log(successful)
+            }
+        )
+    }
+    const handleSubmitForm = (values) => {
+        const { email, password } = values
+        handleLogin(email, password)
+            if (successful === true) {
+                console.log(successful)
+                onClose()
+            }
+    }
 
     return (
         <Formik
@@ -13,13 +45,7 @@ const SignIn = ({onClose}) => {
                 password: '',
             }}
             validateOnBlur
-            // onSubmit={(values) => { console.log(values) }}
-            onSubmit={(values) => {
-                const { email, password } = values
-                AuthService.signIn(email, password)
-                onClose()
-            }
-            }
+            onSubmit={handleSubmitForm}
             validationSchema={signInValidation}
             >
                 {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
@@ -60,6 +86,11 @@ const SignIn = ({onClose}) => {
                         >
                             Sing In
                         </Button>
+                        {message && (
+                            <Alert severity = 'error'>
+                                {message}
+                            </Alert>
+                        )}
                     </form>
                 )}
         </Formik>

@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
+import { Alert } from '@mui/material';
 import { Formik } from 'formik';
 import { signUpValidation } from './validationSchema';
 import AuthService from '../../service/AuthService';
 
 
-const SignUp = ({onClose}) => {
+const SignUp = ({ onClose }) => {
+    
+    const [successful, setSuccessful] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const handleRegister = (email, password) => {
+        setMessage('');
+        setSuccessful(false);
+        AuthService.signUp(email, password).then(
+            (response) => {
+                setMessage(response.data.message);
+                console.log(response.data.message)
+                setSuccessful(true)
+            },
+            (error) => {
+                const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+                setMessage(resMessage);
+                console.log(resMessage)
+                setSuccessful(false);
+            }
+        )
+    }
     
     return (
         <Formik
@@ -18,8 +40,8 @@ const SignUp = ({onClose}) => {
             // onSubmit={(values) => { console.log(values.email) }}
             onSubmit={(values) => {
                 const { email, password } = values
-                AuthService.signUp(email, password)
-                onClose()
+                handleRegister(email, password)
+                // onClose()
             }
             }
             validationSchema={signUpValidation}
@@ -78,6 +100,11 @@ const SignUp = ({onClose}) => {
                     >
                         Sing Up
                     </Button>
+                    {message && (
+                        <Alert severity = 'info'>
+                            {message}
+                        </Alert>
+                    )}
                 </form>
                 )}
             </Formik>

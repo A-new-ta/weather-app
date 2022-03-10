@@ -69,10 +69,10 @@ class UserController {
             });
             
             // await sendActivationMail(email, `${API_URL}/api/activate/${activationLink}`);
-            res.json({ user,  message: 'User has been created' });
+            res.status(201).json({ message: 'User has been created. Sign in, please' });
             
         } catch (err) {
-            res.status(400).json({message: 'Registration error'})
+            res.status(500).json({message: 'Registration error'})
         }
     }
 
@@ -81,13 +81,12 @@ class UserController {
             const { email, password } = req.body;
             const user = await User.findOne({ email });
             if (!user) {
-                return res.status(404).json({ message: `${email} not found` })
+                return res.status(400).json({ message: `${email} not found` })
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {
                 return res.status(400).json({ message: 'wrong password' })
             }
-            
             const token = generateAccessToken(user._id);
             return res.json({ token, email: user.email, message: 'SignIn is successfull' })
             

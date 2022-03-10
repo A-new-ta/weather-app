@@ -12,6 +12,7 @@ const Context = ({ children }) => {
     const [refreshing, changeRefreshing] = useState([false, "", ""])
     const [isZipCode, changeIsZipCode] = useState(false);
     
+    
     // data from api weather
     const getData = useCallback( async() => {
         const body = {};
@@ -55,7 +56,7 @@ const Context = ({ children }) => {
     
     //for local storage
     useEffect(() =>{
-        if(!window.localStorage.getItem('°F')){
+        if (!window.localStorage.getItem('°F')) {
             window.localStorage.setItem('°F', '°C')
             window.localStorage.setItem('city', 'Minsk')
         } else {
