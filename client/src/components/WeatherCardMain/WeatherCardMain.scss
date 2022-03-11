@@ -1,15 +1,15 @@
 
 .weather-card-main {
     .weather-card-main-card {
-        max-width: 1024px;
+        display: flex;
+        justify-content: center;
+        max-width: 1100px;
         margin: 0 auto;
         height: 285px;
-        display: flex;
         position: relative;
         min-width: 300px;
         align-items: center;
         border-radius: 40px;
-        justify-content: center;
         background-color: #F0F0F0;
     }
 } 
@@ -19,5 +19,14 @@
         background-color: #333333;
     }
 } 
+
+.weather-card-main-card {
+    display: flex;
+}
+
+.weather-card-main .close-button {
+    align-self: flex-start;
+    margin-top: 20px;
+}
 
 

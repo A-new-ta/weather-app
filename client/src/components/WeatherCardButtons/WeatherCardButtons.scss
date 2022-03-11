@@ -1,0 +1,12 @@
+.weater-card-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+    // width: 100px;
+}
+
+.weater-card-buttons .change-button {
+    border-radius: 20px;
+}
