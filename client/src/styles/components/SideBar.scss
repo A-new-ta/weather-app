@@ -1,0 +1,27 @@
+.sidebar {
+    width: 300px;
+}
+
+.sidebar .MuiButton-outlined {
+    margin-right: 10px;
+    border-radius: 20px;
+    padding: 15px 20px;
+}
+
+.sidebar .button {
+    padding: 10px;
+    margin-left: 100px;
+}
+
+.swipeable-drawer.dark {
+    .MuiPaper-root {
+    background-color: $color-sidebar-bg-dark;
+    }
+    .sidebar {
+        color: $color-sidebar-bg;
+    }
+    .MuiButton-root {
+        color: $color-sidebar-bg;
+    }
+}
+

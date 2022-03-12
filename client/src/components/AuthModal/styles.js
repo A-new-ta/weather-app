@@ -10,7 +10,7 @@ export const useStyles = makeStyles(() =>
             justifyContent: 'space-between',
         },
         closeIcon: {
-            fontSize: 20,
+            fontSize: '1.6rem',
         },
     })
 )

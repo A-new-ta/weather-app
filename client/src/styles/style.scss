@@ -1,0 +1,24 @@
+// Global
+@import 'variables';
+@import 'mixins';
+@import 'global';
+
+
+// Components
+@import './components/App.scss';
+@import './components/AuthModal.scss';
+@import './components/Footer.scss';
+@import './components/ForecastCard.scss';
+@import './components/Header.scss';
+@import './components/MapWeather.scss';
+@import './components/SearchForm.scss';
+@import './components/SearchInput.scss';
+@import './components/SideBar.scss';
+@import './components/TableWeather.scss';
+@import './components/WeatherCard.scss';
+@import './components/WeatherCardButtons.scss';
+@import './components/WeatherCardList.scss';
+@import './components/WeatherCardSimplify.scss';
+
+
+

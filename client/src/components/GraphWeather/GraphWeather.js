@@ -4,19 +4,26 @@ import { LineChart, XAxis, CartesianGrid, Line, ResponsiveContainer, YAxis, Lege
 import { useStyles } from './styles';
 import { dateTransform } from '../../utils/dateTransform';
 import { AppContext } from '../../context/context';
+import { celsiusToFahrenheit } from '../../utils/transformDegrees';
 const NUMBER_OF_DAYS = 7;
 
 
 const GraphWeather = () => {
     const { data, fahrenheit } = useContext(AppContext);
     const { cartWrapper, setting, settingBtn } = useStyles();
-    const [dataKey, setDataKey] = useState ('temp');
+    const [dataKey, setDataKey] = useState ('temperature');
     const onButtonDataKeyClick = (dataKey) => {
         setDataKey(dataKey)
     }
-    
+    const changeTempUnits = (temp) => {
+        if (fahrenheit === '°F') {
+            return celsiusToFahrenheit(temp)
+        }
+        return temp
+    }
+
     const labelYAxis = () => {
-        if (dataKey === 'temp') {
+        if (dataKey === 'temperature') {
             return fahrenheit
         }
         if (dataKey === 'humidity') {
@@ -29,7 +36,8 @@ const GraphWeather = () => {
     for (let i = 0; i < NUMBER_OF_DAYS; i++) {
         const { datetimeEpoch, temp, humidity, icon, windspeed } = data.days[i];
         let newDate = dateTransform(datetimeEpoch, data.timezone, 'DD.MM')
-        newDataDays.push({ newDate, temp, humidity, icon, windspeed })
+        let temperature = changeTempUnits(temp)
+        newDataDays.push({ newDate, temperature, humidity, icon, windspeed })
     }
     
     return (
@@ -63,8 +71,8 @@ const GraphWeather = () => {
                     aria-label="small outlined button group"
                 >
                     <Button
-                        variant={dataKey === 'temp' ? 'contained' : 'outlined'}
-                        onClick={() => { onButtonDataKeyClick('temp') }}
+                        variant={dataKey === 'temperature' ? 'contained' : 'outlined'}
+                        onClick={() => { onButtonDataKeyClick('temperature') }}
                         className={settingBtn}
                     >
                         Temp

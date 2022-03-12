@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { dateTransform } from '../../utils/dateTransform';
 import { Card, Typography } from '@material-ui/core';
 import cn from 'classnames';
-import './ForecastCard.scss';
+// import './ForecastCard.scss';
 import { ThemeContext } from '../../context/ThemeProvider';
 
 const ForecastCard = (props) => {

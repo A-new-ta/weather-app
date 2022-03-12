@@ -6,7 +6,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import {Tabs, TabList, Tab, TabPanels, TabPanel} from '@reach/tabs'
 import '@reach/tabs/styles.css'
-import './AuthModal.scss'
+// import './AuthModal.scss'
 
 const AuthModal = (props) => {
     const { modal, title, closeIcon } = useStyles();
@@ -30,7 +30,7 @@ const AuthModal = (props) => {
                             aria-label="full width tabs example"
                         >
                             <TabList className='tabsnav'>
-                                <Tab value={'sign_in'} >Sign In</Tab>
+                                <Tab className='button' value={'sign_in'} >Sign In</Tab>
                                 <Tab value={'sign_up'} >Sign Up</Tab>
                                 <IconButton 
                                     aria-label='close'

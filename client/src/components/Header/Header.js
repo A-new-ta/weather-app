@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import './Header.scss';
+// import './Header.scss';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import SearchForm from '../SearchForm/SearchForm';
 import Switcher from '../shared/Switcher';
@@ -24,7 +24,7 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <p>WeatherApp</p>
+            <h1 className='name'>WeatherApp</h1>
             <WeatherCard/>
             <SearchForm />
             <Switcher

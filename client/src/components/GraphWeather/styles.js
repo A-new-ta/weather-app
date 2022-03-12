@@ -3,9 +3,9 @@ import { createStyles, makeStyles } from '@material-ui/core'
 export const useStyles = makeStyles(() =>
     createStyles({
         cartWrapper: {
-            width: '80%',
+            width: '85%',
             height: 200,
-            marginRight: 20,
+            marginRight: 10,
         },
         setting: {
             display: 'flex',

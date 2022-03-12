@@ -1,11 +1,11 @@
 import React from 'react';
-import './Footer.scss';
+// import './Footer.scss';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
         <footer className='footer'>
-            <div>
+            <div className='year'>
                 &copy; {`${currentYear} `}
             </div>
         </footer>

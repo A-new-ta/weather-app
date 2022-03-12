@@ -7,10 +7,10 @@
     height: 200px;
     border-radius: 20px;
     margin: 5px;
-    background-color: rgba(255,255,255,0.2);
+    background-color: $color-weather-card-bg;
 }
 
 .forecast-card.dark .forecast-card-item {
-    background-color: rgb(80, 80, 80);
-    color: rgb(228, 228, 228);
+    background-color: $color-weather-card-bg-dark;
+    color: $color-weather-card-text-dark;
 }

@@ -3,10 +3,11 @@ import React, { useContext, useState } from 'react';
 import Close from '@material-ui/icons/Close';
 import TableWeather from '../TableWeather/TableWeather';
 import cn from 'classnames';
-import './WeatherCardMain.scss';
+// import './WeatherCardSimplify.scss';
 import { ThemeContext } from '../../context/ThemeProvider';
 import GraphWeather from '../GraphWeather/GraphWeather';
 import WeatherCardButtons from '../WeatherCardButtons/WeatherCardButtons';
+import MapWeather from '../MapWeather/MapWeather';
 
 const WeatherCardMain = React.memo(({ id }) => {
     const [viewState, setViewState] = useState('table');
@@ -23,8 +24,7 @@ const WeatherCardMain = React.memo(({ id }) => {
             )
         }
         if (viewState === 'map') {
-            // return <InteractiveMap />
-            return <TableWeather/>
+            return <MapWeather />
         }
         return (
             <GraphWeather />

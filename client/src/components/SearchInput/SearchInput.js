@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { TextField, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import './SearchInput.scss';
+// import './SearchInput.scss';
 import { AppContext } from '../../context/context';
 import Close from '@material-ui/icons/Close'
 

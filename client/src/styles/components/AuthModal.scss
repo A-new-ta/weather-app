@@ -6,7 +6,7 @@
         transition: border-bottom-color ease-in-out 0.2s;
         border-bottom-width: 2px;
         &:hover:not([data-selected]) {
-            border-bottom-color: rgb(9, 62, 161);
+            border-bottom-color: $color-bottom-tab;
             border-bottom-width: 2px;
         }
     }

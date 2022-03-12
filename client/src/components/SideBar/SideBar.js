@@ -5,7 +5,7 @@ import Switcher from '../shared/Switcher';
 import ZipCode from '../ZipCode/ZipCode';
 import AuthButton from '../AuthButton/AuthButton';
 import cn from 'classnames';
-import './SideBar.scss';
+// import './SideBar.scss';
 import { AppContext } from '../../context/context';
 import { ThemeContext } from '../../context/ThemeProvider';
 

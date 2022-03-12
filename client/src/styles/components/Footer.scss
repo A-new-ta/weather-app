@@ -1,8 +1,8 @@
 .footer {
     height: 100px;
     padding: 0 40px;
-    background-color: #5f6262;
-    color: white;
+    background-color: $color-bg-footer;
+    color: $color-footer-text;
     font-weight: 700;
     font-size: 1.5rem;
     .year {

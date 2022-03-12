@@ -2,16 +2,14 @@ import React, { useContext } from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography'
 import Clock from '../Clock/Clock';
-import './WeatherCard.scss';
+// import './WeatherCard.scss';
 import { AppContext } from '../../context/context';
 import { celsiusToFahrenheit } from '../../utils/transformDegrees';
 
 
 const WeatherCard = () => {
     const { data, fahrenheit } = useContext(AppContext)
-    // console.log(data)
-    // console.log(fahrenheit)
-
+    
     const changeTempUnits = (temp) => {
         if (fahrenheit === '°F') {
             return celsiusToFahrenheit(temp)

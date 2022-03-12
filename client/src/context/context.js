@@ -22,7 +22,7 @@ const Context = ({ children }) => {
         try {
             const response = await axios.post('http://localhost:5000/api/weather/current', body);
             // console.log(response.status)
-            // console.log(response.data)
+            console.log(response.data)
             if (response.data.address !== undefined)
             changeData(response.data)
             window.localStorage.setItem('city', String(`${response.data.address}`))

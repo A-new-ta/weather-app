@@ -21,30 +21,29 @@ body {
   font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
+
 
 
 .layout.dark {
-  background-color: black;
-  color: rgb(228, 228, 228);
+  background-color: $color-layout-bg-dark;
+  color: $color-layout-text-dark;
 }
 .layout.dark .main {
-  background-image: url('../src/assets/world_map_dark.jpg');
+  background-image: url('../assets/world_map_dark.jpg');
 }
 .layout.dark .header {
-  background-image: url('../src/assets/header_black.jpg');
+  background-image: url('../assets/header_black.jpg');
 }
 .layout.dark .footer {
-  background-color: #181818;
+  background-color: $color-bg-footer-dark;
 }
 .layout.dark .MuiButton-root{
-  color: rgb(228, 228, 228);
+  color: $color-mui-button-dark;
 }
-
-
-

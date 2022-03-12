@@ -3,7 +3,7 @@ import { AppContext } from '../../context/context';
 import ForecastCard from '../ForecastCard/ForecastCard';
 import Typography from '@material-ui/core/Typography';
 import { celsiusToFahrenheit } from '../../utils/transformDegrees';
-import './TableWeather.scss'
+// import './TableWeather.scss'
 const NUMBER_OF_DAYS = 7;
 
 const TableWeather = () => {
