@@ -1,6 +1,5 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
-// import './WeatherCardButtons.scss'
 
 const buttons = ['table', 'graph', 'map']
 

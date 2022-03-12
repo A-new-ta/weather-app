@@ -2,20 +2,13 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../context/context';
 import ForecastCard from '../ForecastCard/ForecastCard';
 import Typography from '@material-ui/core/Typography';
-import { celsiusToFahrenheit } from '../../utils/transformDegrees';
-// import './TableWeather.scss'
+import { changeTempUnits } from '../../utils/changeTempUnits';
+
 const NUMBER_OF_DAYS = 7;
 
 const TableWeather = () => {
 
-    const changeTempUnits = (temp) => {
-        if (fahrenheit === '°F') {
-            return celsiusToFahrenheit(temp)
-        }
-        return temp
-    }
-
-    const { data, fahrenheit } = useContext(AppContext);
+    const { data, temperatureUnit } = useContext(AppContext);
     if (!data) {
         return (
             <Typography variant="h5">
@@ -35,9 +28,9 @@ const TableWeather = () => {
         <ForecastCard
             key={datetimeEpoch}
             humidity={humidity}
-            temp={changeTempUnits(temp)}
+            temp={changeTempUnits(temp, temperatureUnit)}
             datetimeEpoch={datetimeEpoch}
-            fahrenheit={fahrenheit}
+            temperatureUnit={temperatureUnit}
             icon={icon}
             windspeed={windspeed}
             timezone={data.timezone}

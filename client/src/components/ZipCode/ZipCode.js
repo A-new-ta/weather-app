@@ -4,14 +4,14 @@ import { AppContext } from '../../context/context';
 
 
 const ZipCode = () => {
-    const { isZipCode, changeIsZipCode } = useContext(AppContext);
+    const { isZipCode, setIsZipCode} = useContext(AppContext);
     
     return (
         <FormControlLabel
             control={ <Checkbox color='default' /> }
             label='Zip code'
             labelPlacement='top'
-            onChange={() => changeIsZipCode(!isZipCode)}
+            onChange={() => setIsZipCode(!isZipCode)}
         />
     )
 }

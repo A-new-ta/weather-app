@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-// import './Header.scss';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import SearchForm from '../SearchForm/SearchForm';
 import Switcher from '../shared/Switcher';
@@ -10,16 +9,16 @@ import SideBar from '../SideBar/SideBar';
 import { AppContext } from '../../context/context';
 
 const Header = () => {
-    const { fahrenheit, toggleFahrenheit } = useContext(AppContext);
-    const [menuState, setMenuState] = useState(false)
+    const { temperatureUnit, setTemperatureUnit } = useContext(AppContext);
+    const [isMenu, setIsMenu] = useState(false)
     const openMenu = () => {
-        setMenuState(true)
+        setIsMenu(true)
     }
     const closeMenu = () => {
-        setMenuState(false)
+        setIsMenu(false)
     }
     const changeDegrees = () => {
-        fahrenheit === '°C' ? toggleFahrenheit('°F') : toggleFahrenheit('°C')
+        temperatureUnit === '°C' ? setTemperatureUnit('°F') : setTemperatureUnit('°C')
     }
 
     return (
@@ -39,7 +38,7 @@ const Header = () => {
                 <MenuIcon/>
             </IconButton>
             <SideBar
-                menuState={menuState}
+                menuState={isMenu}
                 openMenu={openMenu}
                 closeMenu={closeMenu}
             />

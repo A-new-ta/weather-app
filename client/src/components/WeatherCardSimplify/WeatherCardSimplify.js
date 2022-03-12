@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import Close from '@material-ui/icons/Close';
 import TableWeather from '../TableWeather/TableWeather';
 import cn from 'classnames';
-// import './WeatherCardSimplify.scss';
 import { ThemeContext } from '../../context/ThemeProvider';
 import GraphWeather from '../GraphWeather/GraphWeather';
 import WeatherCardButtons from '../WeatherCardButtons/WeatherCardButtons';

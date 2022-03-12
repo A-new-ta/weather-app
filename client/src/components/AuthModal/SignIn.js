@@ -7,33 +7,27 @@ import AuthService from '../../service/AuthService';
 
 const SignIn = ({onClose}) => {
 
-    const [successful, setSuccessful] = useState(false);
+    const [isSuccessful, setIsSuccessful] = useState(false);
     const [message, setMessage] = useState('');
 
     const handleLogin = (email, password) => {
         setMessage('');
-        setSuccessful(false);
+        setIsSuccessful(false);
         AuthService.signIn(email, password).then(
             (response) => {
-                console.log(response.message)
-                // setMessage(response.message);
-                setSuccessful(true)
-                console.log(successful)
+                setIsSuccessful(true)
             },
             (error) => {
                 const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-                console.log(resMessage)
                 setMessage(resMessage);
-                setSuccessful(false);
-                console.log(successful)
+                setIsSuccessful(false);
             }
         )
     }
     const handleSubmitForm = (values) => {
         const { email, password } = values
         handleLogin(email, password)
-            if (successful === true) {
-                console.log(successful)
+            if (isSuccessful === true) {
                 onClose()
             }
     }
@@ -78,13 +72,6 @@ const SignIn = ({onClose}) => {
                             error={touched.password && Boolean(errors.password)}
                             helperText={touched.password && errors.password}
                         />
-                        {/* <TextField
-                            fullWidth
-                            variant='standard'
-                            type='password'
-                            margin='normal'
-                            label='Password'
-                        /> */}
                         <Button
                             variant='outlined'
                             type='submit'

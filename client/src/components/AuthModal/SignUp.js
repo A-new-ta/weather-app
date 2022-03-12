@@ -8,23 +8,21 @@ import AuthService from '../../service/AuthService';
 
 const SignUp = ({ onClose }) => {
     
-    const [successful, setSuccessful] = useState(false);
+    const [isSuccessful, setIsSuccessful] = useState(false);
     const [message, setMessage] = useState('');
 
     const handleRegister = (email, password) => {
         setMessage('');
-        setSuccessful(false);
+        setIsSuccessful(false);
         AuthService.signUp(email, password).then(
             (response) => {
                 setMessage(response.data.message);
-                console.log(response.data.message)
-                setSuccessful(true)
+                setIsSuccessful(true)
             },
             (error) => {
                 const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
                 setMessage(resMessage);
-                console.log(resMessage)
-                setSuccessful(false);
+                setIsSuccessful(false);
             }
         )
     }
@@ -37,11 +35,9 @@ const SignUp = ({ onClose }) => {
                 confirmPassword: ''
             }}
             validateOnBlur
-            // onSubmit={(values) => { console.log(values.email) }}
             onSubmit={(values) => {
                 const { email, password } = values
                 handleRegister(email, password)
-                // onClose()
             }
             }
             validationSchema={signUpValidation}
@@ -56,7 +52,6 @@ const SignUp = ({ onClose }) => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.email}
-                        // autoFocus
                         fullWidth
                         margin='normal'
                         error={touched.email && Boolean(errors.email)}
@@ -71,7 +66,6 @@ const SignUp = ({ onClose }) => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.password}
-                        // autoFocus
                         fullWidth
                         margin='normal'
                         error={touched.password && Boolean(errors.password)}

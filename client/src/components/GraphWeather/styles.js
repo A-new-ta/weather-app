@@ -6,6 +6,7 @@ export const useStyles = makeStyles(() =>
             width: '85%',
             height: 200,
             marginRight: 10,
+            fontSize: '1rem'
         },
         setting: {
             display: 'flex',

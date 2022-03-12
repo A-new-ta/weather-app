@@ -6,7 +6,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import {Tabs, TabList, Tab, TabPanels, TabPanel} from '@reach/tabs'
 import '@reach/tabs/styles.css'
-// import './AuthModal.scss'
+
 
 const AuthModal = (props) => {
     const { modal, title, closeIcon } = useStyles();

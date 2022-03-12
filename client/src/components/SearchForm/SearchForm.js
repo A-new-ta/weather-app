@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import SearchInput from '../SearchInput/SearchInput';
-// import './SearchForm.scss';
 import AuthService from '../../service/AuthService';
 import WeatherCardSimplify from '../WeatherCardSimplify/WeatherCardSimplify'
 

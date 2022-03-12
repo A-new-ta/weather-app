@@ -1,17 +1,15 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { MapContainer, TileLayer, Popup, useMapEvents } from 'react-leaflet';
 import { AppContext } from '../../context/context';
-// import './MapWeather.scss';
-
 
 const MapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 const LocationMarker = () => {
-    const { data, fahrenheit } = useContext(AppContext);
+    const { data, temperatureUnit } = useContext(AppContext);
     const { latitude, longitude } = data;
     const temp = data.currentConditions.temp;
     const [position, setPosition] = useState(null)
-    const [popupData, setPopupsData] = useState([])
+    const [popupDatas, setPopupsDatas] = useState([])
     const map = useMapEvents({})
 
     useEffect(() => {
@@ -21,23 +19,23 @@ const LocationMarker = () => {
     useEffect(() => {
         map.flyTo([latitude, longitude], map.getZoom())
         setPosition({ lat: latitude, lng: longitude })
-        setPopupsData([
-            ...popupData,
+        setPopupsDatas([
+            ...popupDatas,
             {
                 lat: latitude,
                 lng: longitude,
                 temp,
-                fahrenheit,
+                temperatureUnit,
             },
         ])
     }, [latitude, longitude, map])
     return position === null ? null : (
         <>
-            {popupData.map(({ temp, lat, lng, fahrenheit }) => {
+            {popupDatas.map(({ temp, lat, lng, temperatureUnit }) => {
                 const key = `${lat}${lng}`
                 return (
                     <Popup key={key} position={[lat, lng]} autoClose={false}>
-                        {temp} {fahrenheit}
+                        {temp} {temperatureUnit}
                     </Popup>
                 )
             })}

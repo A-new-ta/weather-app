@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { TextField, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-// import './SearchInput.scss';
 import { AppContext } from '../../context/context';
 import Close from '@material-ui/icons/Close'
 
@@ -9,10 +8,10 @@ import Close from '@material-ui/icons/Close'
 const SearchInput = () => {
     const {
         search, 
-        changeSearch,
+        setSearch,
         handleSubmit, 
-        refreshing, 
-        changeRefreshing } = useContext(AppContext)
+        refreshings, 
+        setRefreshings } = useContext(AppContext)
     
     return (
         <>
@@ -21,18 +20,18 @@ const SearchInput = () => {
                 label="Search for location"
                 variant="outlined"
                 value={search}
-                onChange={e => changeSearch(e.target.value)}
+                onChange={e => setSearch(e.target.value)}
             />
             <IconButton type='submit'>
                 <SearchIcon />
             </IconButton>
         </form>
-        {refreshing[0] 
+        {refreshings[0] 
             ? 
-            <div className={`loading ${refreshing[2]}`}>
-              {refreshing[1]} {refreshing[2] === "red" 
+            <div className={`loading ${refreshings[2]}`}>
+              {refreshings[1]} {refreshings[2] === 'red' 
                 ? 
-                <Close onClick={() => {changeRefreshing([false , '', ''])}} className='close-button'/>
+                <Close onClick={() => {setRefreshings([false , '', ''])}} className='close-button'/>
                 : 
                 <></>
                 }

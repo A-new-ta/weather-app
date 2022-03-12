@@ -1,9 +1,6 @@
 import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import WeatherCardSimplify from '../WeatherCardSimplify/WeatherCardSimplify';
-// import './WeatherCardList.scss';
-
-
 
 const WeatherCardList = () => {
 

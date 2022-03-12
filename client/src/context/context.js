@@ -5,32 +5,29 @@ import axios from 'axios';
 export const AppContext = createContext();
 
 const Context = ({ children }) => {
-    const [data, changeData] = useState('')
-    const [fahrenheit, toggleFahrenheit] = useState('°C')
-    const [search, changeSearch] = useState('')
-    const [city, changeCity] = useState(window.localStorage.getItem('city'))
-    const [refreshing, changeRefreshing] = useState([false, "", ""])
-    const [isZipCode, changeIsZipCode] = useState(false);
+    const [data, setData] = useState('')
+    const [temperatureUnit, setTemperatureUnit] = useState('°C')
+    const [search, setSearch] = useState('')
+    const [city, setCity] = useState(window.localStorage.getItem('city'))
+    const [refreshings, setRefreshings] = useState([false, '', ''])
+    const [isZipCode, setIsZipCode] = useState(false);
     
     
     // data from api weather
     const getData = useCallback( async() => {
         const body = {};
         body.data = city;
-        // console.log(city);
-        changeRefreshing([true, "Loading...", "blue"])
+        setRefreshings([true, 'Loading...'])
         try {
             const response = await axios.post('http://localhost:5000/api/weather/current', body);
-            // console.log(response.status)
-            console.log(response.data)
-            if (response.data.address !== undefined)
-            changeData(response.data)
+            if (response.data.address) {
+                setData(response.data)
+            }
             window.localStorage.setItem('city', String(`${response.data.address}`))
-            changeRefreshing([false, "", ""])
+            setRefreshings([false, '', ''])
         } catch (err) {
-            console.log(err)
-            changeRefreshing([
-                true, "Network/API error, change the city name you entered.", "red"
+            setRefreshings([
+                true, 'Network/API error, change the city name you entered.', 'red'
               ])
         } 
     }, [city])
@@ -38,15 +35,14 @@ const Context = ({ children }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (search.length > 0) {
-            console.log(search)
-            changeCity(search)
-            changeSearch("")
+            setCity(search)
+            setSearch('')
         }
     }
     
     // search button
     const handleResultClick = (e) => {
-        changeSearch(e)
+        setSearch(e)
     }
 
     // change data whenever city name changes to a valid name
@@ -59,31 +55,35 @@ const Context = ({ children }) => {
         if (!window.localStorage.getItem('°F')) {
             window.localStorage.setItem('°F', '°C')
             window.localStorage.setItem('city', 'Minsk')
+            window.localStorage.setItem('zipCode', 'false')
         } else {
-            toggleFahrenheit(window.localStorage.getItem('°F'))
-            changeCity(window.localStorage.getItem('city'))
+            setTemperatureUnit(window.localStorage.getItem('°F'))
+            setCity(window.localStorage.getItem('city'))
+            setIsZipCode(window.localStorage.getItem('zipCode'))
         }
     }, [])
 
     useEffect(() => {
-        window.localStorage.setItem('°F', fahrenheit)
-    }, [fahrenheit])
+        window.localStorage.setItem('°F', temperatureUnit)
+    }, [temperatureUnit])
     
-    useMemo(() => ({ isZipCode, changeIsZipCode }), [isZipCode]);
+    useEffect(() => {
+        window.localStorage.setItem('zipCode', isZipCode)
+    }, [isZipCode])
 
     return (
         <AppContext.Provider value={{
             data,
-            fahrenheit,
-            toggleFahrenheit,
+            temperatureUnit,
+            setTemperatureUnit,
             search,
-            changeSearch,
+            setSearch,
             handleResultClick,
             handleSubmit,
-            refreshing,
-            changeRefreshing, 
+            refreshings,
+            setRefreshings, 
             isZipCode,
-            changeIsZipCode
+            setIsZipCode
         }}>
             {children}
         </AppContext.Provider>

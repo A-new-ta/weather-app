@@ -2,21 +2,12 @@ import React, { useContext } from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography'
 import Clock from '../Clock/Clock';
-// import './WeatherCard.scss';
 import { AppContext } from '../../context/context';
-import { celsiusToFahrenheit } from '../../utils/transformDegrees';
-
+import { changeTempUnits } from '../../utils/changeTempUnits';
 
 const WeatherCard = () => {
-    const { data, fahrenheit } = useContext(AppContext)
+    const { data, temperatureUnit } = useContext(AppContext)
     
-    const changeTempUnits = (temp) => {
-        if (fahrenheit === '°F') {
-            return celsiusToFahrenheit(temp)
-        }
-        return temp
-    }
-
     if (!data) {
         return (
             <Typography variant="h5">
@@ -31,7 +22,7 @@ const WeatherCard = () => {
             </Typography>
             <Clock timezone={data.timezone} />
             <Typography variant='h4'>
-            {changeTempUnits(data.currentConditions.temp)} {fahrenheit}
+            {changeTempUnits((data.currentConditions.temp), temperatureUnit)} {temperatureUnit}
             </Typography>
             <Typography variant='h6' >
                 Wind {data.currentConditions.windspeed} km/h

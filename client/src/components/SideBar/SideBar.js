@@ -5,15 +5,14 @@ import Switcher from '../shared/Switcher';
 import ZipCode from '../ZipCode/ZipCode';
 import AuthButton from '../AuthButton/AuthButton';
 import cn from 'classnames';
-// import './SideBar.scss';
 import { AppContext } from '../../context/context';
 import { ThemeContext } from '../../context/ThemeProvider';
 
 
 const SideBar = (props) => {
-    const { fahrenheit, toggleFahrenheit } = useContext(AppContext);
+    const { temperatureUnit, setTemperatureUnit } = useContext(AppContext);
     const changeDegrees = () => {
-        fahrenheit === '°C' ? toggleFahrenheit('°F') : toggleFahrenheit('°C')
+        temperatureUnit === '°C' ? setTemperatureUnit('°F') : setTemperatureUnit('°C')
     }
     const { isDark, setIsDark } = useContext(ThemeContext);
     
