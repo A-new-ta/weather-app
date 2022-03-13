@@ -16,14 +16,12 @@ const TableWeather = () => {
             </Typography>
         )
     }
-    // console.log(data)
     let newDataDays = [];
     for (let i = 0; i < NUMBER_OF_DAYS; i++) {
         const { datetimeEpoch, temp, humidity, icon, windspeed } = data.days[i];
         newDataDays.push({ datetimeEpoch, temp, humidity, icon, windspeed })
     }
-    // console.log(newDataDays)
-
+    
     let card = newDataDays.map(({datetimeEpoch, temp, humidity, icon, windspeed}) => 
         <ForecastCard
             key={datetimeEpoch}

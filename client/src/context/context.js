@@ -1,6 +1,5 @@
-import React, { createContext, useCallback, useState, useEffect, useMemo } from 'react';
+import React, { createContext, useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
-
 
 export const AppContext = createContext();
 
@@ -11,7 +10,19 @@ const Context = ({ children }) => {
     const [city, setCity] = useState(window.localStorage.getItem('city'))
     const [refreshings, setRefreshings] = useState([false, '', ''])
     const [isZipCode, setIsZipCode] = useState(false);
+    const [cards, setCards] = useState([]);
+    const [count, setCount] = useState(0)
     
+    // add weather card
+    const addNewCard = () => {
+        setCount(count + 1)
+        setCards((cards) => [...cards, { id: count}])
+    }
+    
+    // delete weather card
+    const deleteCard = (id) => {
+        setCards(cards.filter(obj => obj.id != id));
+    }
     
     // data from api weather
     const getData = useCallback( async() => {
@@ -34,16 +45,30 @@ const Context = ({ children }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (search.length > 0) {
-            setCity(search)
-            setSearch('')
+        let patternOne = /^[a-zA-Z]+$/;
+        let patternTwo = /\d*\.\d*/;
+        let patternThree = /^[0-9 ]+$/;
+        if (search.length > 0 && (!isZipCode)) {
+            if (patternOne.test(search) || patternTwo.test(search)) {
+                setCity(search)
+                setSearch('')
+            } else {
+                setRefreshings([true, 'Enter correct city or coordinates, please', 'red'])
+            }
+        }
+        if (search.length > 0 && (isZipCode)) {
+            if (patternThree.test(search)) {
+                setCity(search)
+                setSearch('')
+            } else {
+                setRefreshings([true, 'Enter correct zipcode, please', 'red'])
+            }
         }
     }
-    
     // search button
-    const handleResultClick = (e) => {
-        setSearch(e)
-    }
+    // const handleResultClick = (e) => {
+    //     setSearch(e)
+    // }
 
     // change data whenever city name changes to a valid name
     useEffect(() => {
@@ -55,11 +80,11 @@ const Context = ({ children }) => {
         if (!window.localStorage.getItem('°F')) {
             window.localStorage.setItem('°F', '°C')
             window.localStorage.setItem('city', 'Minsk')
-            window.localStorage.setItem('zipCode', 'false')
+            // window.localStorage.setItem('zipCode', 'false')
         } else {
             setTemperatureUnit(window.localStorage.getItem('°F'))
             setCity(window.localStorage.getItem('city'))
-            setIsZipCode(window.localStorage.getItem('zipCode'))
+            // setIsZipCode(window.localStorage.getItem('zipCode'))
         }
     }, [])
 
@@ -67,9 +92,9 @@ const Context = ({ children }) => {
         window.localStorage.setItem('°F', temperatureUnit)
     }, [temperatureUnit])
     
-    useEffect(() => {
-        window.localStorage.setItem('zipCode', isZipCode)
-    }, [isZipCode])
+    // useEffect(() => {
+    //     window.localStorage.setItem('zipCode', isZipCode)
+    // }, [isZipCode])
 
     return (
         <AppContext.Provider value={{
@@ -78,12 +103,16 @@ const Context = ({ children }) => {
             setTemperatureUnit,
             search,
             setSearch,
-            handleResultClick,
+            // handleResultClick,
             handleSubmit,
             refreshings,
             setRefreshings, 
             isZipCode,
-            setIsZipCode
+            setIsZipCode,
+            cards,
+            setCards,
+            addNewCard,
+            deleteCard
         }}>
             {children}
         </AppContext.Provider>
@@ -91,4 +120,3 @@ const Context = ({ children }) => {
 }
 
 export default Context
-

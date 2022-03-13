@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import WeatherCardList from './components/WeatherCardList/WeatherCardList';
+import MainWindow from './components/MainWindow/MainWindow';
 import Footer from './components/Footer/Footer';
-// import './App.scss';
 import { ThemeProvider } from './context/ThemeProvider';
 import Layout from './components/Layout/Layout';
 import './styles/style.scss'
@@ -14,7 +13,7 @@ function App() {
       <Layout className='layout'>
           <div className='App'>
             <Header />
-            <WeatherCardList />
+            <MainWindow />
             <Footer />
           </div>
       </Layout>

@@ -1,0 +1,26 @@
+.main {
+    flex: 1 0 0;
+    width: 100%;
+    max-width: 1440px;
+    margin: 50px auto 0;
+    background-size: contain;
+    background-image: url('../../assets/world_map.jpg');
+    background-repeat: no-repeat;
+}
+
+.item-transition-enter {
+    opacity: 0;
+  }
+  .item-transition-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  .item-transition-exit {
+    opacity: 1;
+  }
+  .item-transition-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+
+

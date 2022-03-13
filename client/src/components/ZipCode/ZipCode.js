@@ -12,6 +12,7 @@ const ZipCode = () => {
             label='Zip code'
             labelPlacement='top'
             onChange={() => setIsZipCode(!isZipCode)}
+            checked={(isZipCode)}
         />
     )
 }

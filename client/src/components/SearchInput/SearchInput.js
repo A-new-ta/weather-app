@@ -11,7 +11,8 @@ const SearchInput = () => {
         setSearch,
         handleSubmit, 
         refreshings, 
-        setRefreshings } = useContext(AppContext)
+        setRefreshings,
+        } = useContext(AppContext)
     
     return (
         <>
@@ -22,7 +23,10 @@ const SearchInput = () => {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
             />
-            <IconButton type='submit'>
+            <IconButton
+                    type='submit'
+                    // disabled={(!isZipCode)}
+            >
                 <SearchIcon />
             </IconButton>
         </form>
