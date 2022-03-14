@@ -39,7 +39,6 @@ const sendActivationMail = async function(to, link) {
                 <a href='${link}'>${link}</a>
             </div>
             `
-    
     })
 }
 
@@ -88,7 +87,7 @@ class UserController {
                 return res.status(400).json({ message: 'wrong password' })
             }
             const token = generateAccessToken(user._id);
-            return res.json({ token, email: user.email, message: 'SignIn is successfull' })
+            return res.json({ token, email: user.email, cities: user.cities, message: 'SignIn is successfull' })
             
         } catch (err) {
             res.status(400).json({message: 'Login error'})
@@ -144,7 +143,7 @@ class UserController {
 // update user and cities
   async updateUser (req, res) {
       try {
-          const { email, password, cities, degrees } = req.body;
+          const { email, password, cities } = req.body;
         
           const user = await User.findOne({ email });
         
@@ -155,7 +154,7 @@ class UserController {
           const hashedPassword = await bcrypt.hash(password, saltRounds);
           const newPassword = { password: hashedPassword };
                 
-        await User.updateMany({ email }, {$set: newPassword,  $push: { cities: cities }, degrees } );
+        await User.updateMany({ email }, {$set: newPassword,  $push: { cities: cities }} );
           
         return res.json({message: `user ${email} has been updated`})
         } catch (err) {
@@ -182,6 +181,7 @@ class UserController {
           res.status(400).json('error')
       }
     }
+
 //mail activation
     async activate(req, res) {
         try {

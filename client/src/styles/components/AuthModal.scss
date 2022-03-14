@@ -22,3 +22,15 @@
     max-width: 500px;
     width: 40vw;
 }
+
+
+.auth-modal.dark {
+    background-color: $color-authmodal-bg-dark;
+    color: $color-weather-card-text-dark;
+}
+.auth-modal.dark .form-sign .MuiButton-outlined, .auth-modal.dark .form-sign .MuiInputBase-input {
+    color: $color-weather-card-text-dark;
+}
+
+
+

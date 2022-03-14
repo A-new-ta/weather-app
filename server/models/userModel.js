@@ -20,9 +20,6 @@ const userSchema = new mongoose.Schema({
     
     cities: { type: [String] },
     
-    degrees: {
-        type: String, default: 'C'
-    }, 
     // favourities: [{type: ObjectId, ref: 'Favourities'}]
 })
 

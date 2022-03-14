@@ -31,6 +31,7 @@ const Header = () => {
                 labelPlacement={'top'}
                 value={'degrees'}
                 onChange={changeDegrees}
+                checked={temperatureUnit === '°F'}
             />
                 
             <AuthButton/>

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { Alert } from '@mui/material';
 import { Formik } from 'formik';
 import { signInValidation } from './validationSchema';
 import AuthService from '../../service/AuthService';
+import { AppContext } from '../../context/context';
 
 const SignIn = ({onClose}) => {
-
+    const { isLogin, setIsLogin } = useContext(AppContext);
+    
     const [isSuccessful, setIsSuccessful] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -28,7 +30,8 @@ const SignIn = ({onClose}) => {
         const { email, password } = values
         handleLogin(email, password)
             if (isSuccessful === true) {
-                onClose()
+                setIsLogin(true);
+                onClose();
             }
     }
 
@@ -75,7 +78,6 @@ const SignIn = ({onClose}) => {
                         <Button
                             variant='outlined'
                             type='submit'
-                            disabled={!isValid && !dirty}
                             onClick={handleSubmit}
                         >
                             Sing In

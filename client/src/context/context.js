@@ -11,8 +11,8 @@ const Context = ({ children }) => {
     const [refreshings, setRefreshings] = useState([false, '', ''])
     const [isZipCode, setIsZipCode] = useState(false);
     const [cards, setCards] = useState([]);
-    const [count, setCount] = useState(0)
-    
+    const [count, setCount] = useState(0);
+    const [isLogin, setIsLogin] = useState(localStorage.getItem('email') ? true : false);
     // add weather card
     const addNewCard = () => {
         setCount(count + 1)
@@ -80,11 +80,9 @@ const Context = ({ children }) => {
         if (!window.localStorage.getItem('°F')) {
             window.localStorage.setItem('°F', '°C')
             window.localStorage.setItem('city', 'Minsk')
-            // window.localStorage.setItem('zipCode', 'false')
         } else {
             setTemperatureUnit(window.localStorage.getItem('°F'))
             setCity(window.localStorage.getItem('city'))
-            // setIsZipCode(window.localStorage.getItem('zipCode'))
         }
     }, [])
 
@@ -92,10 +90,6 @@ const Context = ({ children }) => {
         window.localStorage.setItem('°F', temperatureUnit)
     }, [temperatureUnit])
     
-    // useEffect(() => {
-    //     window.localStorage.setItem('zipCode', isZipCode)
-    // }, [isZipCode])
-
     return (
         <AppContext.Provider value={{
             data,
@@ -112,7 +106,9 @@ const Context = ({ children }) => {
             cards,
             setCards,
             addNewCard,
-            deleteCard
+            deleteCard,
+            isLogin,
+            setIsLogin
         }}>
             {children}
         </AppContext.Provider>

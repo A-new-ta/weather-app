@@ -1,4 +1,3 @@
-// import { getMaxListeners } from "process";
 
 // export const URL = 'mongodb://localhost:27017/usersdb';
 export const URL = 'mongodb+srv://Anuta123:santa12345@cluster0.vwsdo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';

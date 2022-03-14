@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Dialog, DialogTitle, IconButton } from '@material-ui/core';
-import  CloseIcon  from '@material-ui/icons/Close'
-import { useStyles } from './styles'
+import CloseIcon from '@material-ui/icons/Close';
+import { useStyles } from './styles';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import {Tabs, TabList, Tab, TabPanels, TabPanel} from '@reach/tabs'
+import cn from 'classnames';
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
+import { ThemeContext } from '../../context/ThemeProvider';
 import '@reach/tabs/styles.css'
 
 
 const AuthModal = (props) => {
-    const { modal, title, closeIcon } = useStyles();
     
-
+    const { modal, title, closeIcon } = useStyles();
+    const { isDark } = useContext(ThemeContext);
+    
     return (
         <Dialog 
             open={props.visible}
@@ -19,7 +22,7 @@ const AuthModal = (props) => {
             aria-labelledby="form-dialog-title"
             PaperProps={{ className: modal }}
         >
-            <DialogTitle>
+            <DialogTitle className={cn('auth-modal', { dark: isDark })}>
                 <div className={title}>
                     <div>
                         <Tabs

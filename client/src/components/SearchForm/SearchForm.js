@@ -4,8 +4,8 @@ import SearchInput from '../SearchInput/SearchInput';
 import { AppContext } from '../../context/context';
 
 const SearchForm = () => {
-    const { addNewCard } = useContext(AppContext);
-       
+    const { addNewCard, isLogin } = useContext(AppContext);
+    
     return (
         <div className='search-form'>
             <SearchInput />
@@ -14,12 +14,12 @@ const SearchForm = () => {
             >
                 Card
             </Button>
-            <Button
-                variant='outlined'
-                // disabled={btnStatus()}
-            >           
-                Favourite
-            </Button>
+            {isLogin ?
+                <Button
+                    variant='outlined'
+                >
+                    Favourite
+                </Button> : null}
         </div>
     )
 }

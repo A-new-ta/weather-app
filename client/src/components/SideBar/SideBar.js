@@ -43,12 +43,14 @@ const SideBar = (props) => {
                     labelPlacement={'top'}
                     value={'theme'}
                     onChange={() => setIsDark(!isDark)}
+                    checked={isDark}
                 />
                 <Switcher
                     label={'°C | °F'}
                     labelPlacement={'top'}
                     value={'degrees'}
                     onChange={changeDegrees}
+                    checked={temperatureUnit === '°F'}
                 />
                 <ZipCode/>
                 

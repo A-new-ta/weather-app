@@ -12,6 +12,7 @@ const Switcher = (props) => {
                 label={props.label}
                 labelPlacement={props.labelPlacement}
                 onChange={props.onChange}
+                checked={props.checked}
             />
         </FormControl>
         
