@@ -26,8 +26,6 @@ const AuthModal = (props) => {
                 <div className={title}>
                     <div>
                         <Tabs
-                            // value={value}
-                            // onChange={handleChange}
                             indicatorColor="primary"
                             textColor="primary"
                             aria-label="full width tabs example"

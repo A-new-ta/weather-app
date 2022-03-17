@@ -7,6 +7,7 @@ import AuthButton from '../AuthButton/AuthButton';
 import cn from 'classnames';
 import { AppContext } from '../../context/context';
 import { ThemeContext } from '../../context/ThemeProvider';
+import FavouritiesList from '../FavouritiesList/FavouritiesList';
 
 
 const SideBar = (props) => {
@@ -53,8 +54,8 @@ const SideBar = (props) => {
                     checked={temperatureUnit === '°F'}
                 />
                 <ZipCode/>
-                
-                <Divider/>
+                <Divider />
+                <FavouritiesList/>
             </div>
 
         </SwipeableDrawer>

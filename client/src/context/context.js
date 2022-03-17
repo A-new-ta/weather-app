@@ -13,6 +13,7 @@ const Context = ({ children }) => {
     const [cards, setCards] = useState([]);
     const [count, setCount] = useState(0);
     const [isLogin, setIsLogin] = useState(localStorage.getItem('email') ? true : false);
+
     // add weather card
     const addNewCard = () => {
         setCount(count + 1)
@@ -65,10 +66,6 @@ const Context = ({ children }) => {
             }
         }
     }
-    // search button
-    // const handleResultClick = (e) => {
-    //     setSearch(e)
-    // }
 
     // change data whenever city name changes to a valid name
     useEffect(() => {
@@ -97,7 +94,6 @@ const Context = ({ children }) => {
             setTemperatureUnit,
             search,
             setSearch,
-            // handleResultClick,
             handleSubmit,
             refreshings,
             setRefreshings, 
@@ -108,7 +104,7 @@ const Context = ({ children }) => {
             addNewCard,
             deleteCard,
             isLogin,
-            setIsLogin
+            setIsLogin,
         }}>
             {children}
         </AppContext.Provider>

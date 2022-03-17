@@ -11,7 +11,6 @@ const SearchInput = () => {
         setSearch,
         handleSubmit, 
         refreshings, 
-        setRefreshings,
         } = useContext(AppContext)
     
     return (
@@ -29,15 +28,13 @@ const SearchInput = () => {
                 <SearchIcon />
             </IconButton>
         </form>
-        {refreshings[0] ? 
+            {refreshings[0]
+                ? 
             <div className={`loading ${refreshings[2]}`}>
                 {refreshings[1]}
-                    {refreshings[2] === 'red' ? 
-                        <Close onClick={() => {setRefreshings([false , '', ''])}} className='close-button'/>
-                        : <></>
-                    }
             </div>
-            : <></>}
+                :
+            <></>}
         </>
         
     )

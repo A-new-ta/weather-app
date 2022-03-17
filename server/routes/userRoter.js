@@ -16,7 +16,7 @@ userRouter.get('/activate/:link', UserController.activate);
 
 userRouter.get('/', UserController.getAll);
 userRouter.get('/:id', UserController.getUser);
-userRouter.put('/user', checkToken, UserController.updateUser);
+userRouter.put('/user/add', checkToken, UserController.updateUser);
 userRouter.put('/user/remove', checkToken, UserController.removeCities);
 userRouter.delete('/user', checkToken, UserController.deleteUser);
 

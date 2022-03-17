@@ -8,31 +8,25 @@ import { AppContext } from '../../context/context';
 
 const SignIn = ({onClose}) => {
     const { isLogin, setIsLogin } = useContext(AppContext);
-    
-    const [isSuccessful, setIsSuccessful] = useState(false);
     const [message, setMessage] = useState('');
 
     const handleLogin = (email, password) => {
         setMessage('');
-        setIsSuccessful(false);
+        setIsLogin(false);
         AuthService.signIn(email, password).then(
             (response) => {
-                setIsSuccessful(true)
+                setIsLogin(true);
+                onClose();
             },
             (error) => {
                 const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
                 setMessage(resMessage);
-                setIsSuccessful(false);
             }
         )
     }
     const handleSubmitForm = (values) => {
         const { email, password } = values
         handleLogin(email, password)
-            if (isSuccessful === true) {
-                setIsLogin(true);
-                onClose();
-            }
     }
 
     return (

@@ -57,7 +57,6 @@ const SignUp = ({ onClose }) => {
                         error={touched.email && Boolean(errors.email)}
                         helperText={touched.email && errors.email}
                         />
-                        {/* {touched.email && errors.email && <span className='error'>{ errors.email}</span>} */}
                     <TextField
                         label='Password'
                         type='password'
@@ -71,7 +70,6 @@ const SignUp = ({ onClose }) => {
                         error={touched.password && Boolean(errors.password)}
                         helperText={touched.password && errors.password}
                         />
-                        {/* {touched.password && errors.password && <span className='error'>{errors.password}</span>} */}
                     <TextField
                         label='Confirm your password'
                         type='password'
@@ -85,7 +83,6 @@ const SignUp = ({ onClose }) => {
                         error={touched.confirmPassword && Boolean(errors.confirmPassword)}
                         helperText={touched.confirmPassword && errors.confirmPassword}
                         />
-                        {/* {touched.confirmPassword && errors.confirmPassword && <p className='error'>{errors.confirmPassword}</p>} */}
                     <Button
                         variant='outlined'
                         type='submit'

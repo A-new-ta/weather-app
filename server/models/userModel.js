@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema({
     // },
     // activationLink: { type: String },
     
-    cities: { type: [String] },
+    cities: {
+        type: [{
+            name: String
+        }
+    ] },
     
     // favourities: [{type: ObjectId, ref: 'Favourities'}]
 })

@@ -15,10 +15,11 @@ const WeatherCard = () => {
             </Typography>
         )
     }
+    const city = data.resolvedAddress.split(',')[0];
     return (
         <Box boxShadow={3} className="weather-card">
             <Typography variant='h6' >
-                {data.resolvedAddress}
+                {city}
             </Typography>
             <Clock timezone={data.timezone} />
             <Typography variant='h4'>

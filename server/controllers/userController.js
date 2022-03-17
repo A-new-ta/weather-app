@@ -143,20 +143,20 @@ class UserController {
 // update user and cities
   async updateUser (req, res) {
       try {
-          const { email, password, cities } = req.body;
+          const { email, cities } = req.body;
         
           const user = await User.findOne({ email });
         
           if (!user) {
               return res.status(404).json({ message: `${email} not found` })
           }
-          const saltRounds = 10;
-          const hashedPassword = await bcrypt.hash(password, saltRounds);
-          const newPassword = { password: hashedPassword };
+        //   const saltRounds = 10;
+        //   const hashedPassword = await bcrypt.hash(password, saltRounds);
+        //   const newPassword = { password: hashedPassword };
                 
-        await User.updateMany({ email }, {$set: newPassword,  $push: { cities: cities }} );
-          
-        return res.json({message: `user ${email} has been updated`})
+        await User.updateMany({ email }, { $push: { cities: cities }} );
+        const newUser = await User.findOne({email})
+        return res.json({newUser, message: `user ${email} has been updated`})
         } catch (err) {
             res.status(400).json('error')
         }
@@ -164,22 +164,21 @@ class UserController {
     
 
 // remove cities
-  async removeCities (req, res) {
-    try {
-        const { email, cities } = req.body;
+    async removeCities (req, res) {
+        try {
+            const { email, cities } = req.body;
       
-        const user = await User.findOne({ email });
-      
-        if (!user) {
-            return res.status(404).json({ message: `${email} not found` })
-        }
+            const user = await User.findOne({ email });
+            if (!user) {
+                return res.status(404).json({ message: `${email} not found` })
+            }
 
-      await User.updateOne({ email }, { $pull: { cities: cities } } );
-        
-      return res.json({message: `user ${email} has been updated`})
-      } catch (err) {
-          res.status(400).json('error')
-      }
+            await User.updateOne({ email }, { $pull: { cities: cities } });
+            const newUser = await User.findOne({email})
+            return res.json({ newUser, message: `user ${email} has been updated` })
+        } catch (err) {
+            res.status(400).json('error')
+        }
     }
 
 //mail activation
