@@ -28,20 +28,35 @@ const Context = ({ children }) => {
     // data from api weather
     const getData = useCallback( async() => {
         const body = {};
-        body.data = city;
-        setRefreshings([true, 'Loading...'])
-        try {
-            const response = await axios.post('http://localhost:5000/api/weather/current', body);
-            if (response.data.address) {
-                setData(response.data)
+        if (!city) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    let longitude = position.coords.longitude.toFixed(3);
+                    let latitude = position.coords.latitude.toFixed(3);
+                    setCity(`${latitude},${longitude}`);
+                    // body.data = `${latitude},${longitude}`
+                })
+            } else {
+                setRefreshings([
+                    true, 'Location service not found', 'red'
+                ])
             }
-            window.localStorage.setItem('city', String(`${response.data.address}`))
-            setRefreshings([false, '', ''])
-        } catch (err) {
-            setRefreshings([
-                true, 'Network/API error, change the city name you entered.', 'red'
-              ])
-        } 
+        } else {
+            body.data = city;
+        }
+            setRefreshings([true, 'Loading...'])
+            try {
+                const response = await axios.post('http://localhost:5000/api/weather/current', body);
+                if (response.data.address) {
+                    setData(response.data)
+                }
+                window.localStorage.setItem('city', String(`${response.data.address}`))
+                setRefreshings([false, '', ''])
+            } catch (err) {
+                setRefreshings([
+                    true, 'Network/API error, change the city name you entered.', 'red'
+                ])
+            }
     }, [city])
 
     const handleSubmit = (e) => {
@@ -76,7 +91,7 @@ const Context = ({ children }) => {
     useEffect(() =>{
         if (!window.localStorage.getItem('°F')) {
             window.localStorage.setItem('°F', '°C')
-            window.localStorage.setItem('city', 'Minsk')
+            // window.localStorage.setItem('city', 'Minsk')
         } else {
             setTemperatureUnit(window.localStorage.getItem('°F'))
             setCity(window.localStorage.getItem('city'))

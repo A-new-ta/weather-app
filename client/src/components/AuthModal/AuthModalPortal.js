@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import ReactDOM from 'react-dom';
 import { Dialog, DialogTitle, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { useStyles } from './styles';
@@ -10,12 +11,12 @@ import { ThemeContext } from '../../context/ThemeProvider';
 import '@reach/tabs/styles.css'
 
 
-const AuthModal = (props) => {
+const AuthModalPortal = (props) => {
     
     const { modal, title, closeIcon } = useStyles();
     const { isDark } = useContext(ThemeContext);
     
-    return (
+    return  ReactDOM.createPortal(
         <Dialog 
             open={props.visible}
             onClose={props.onClose}
@@ -46,11 +47,13 @@ const AuthModal = (props) => {
                             </TabPanels>
                         </Tabs>
                     </div>
-                </div>
+                   
+                    </div>
             </DialogTitle>
-        </Dialog>
+        </Dialog>,
+        document.getElementById('modal')
     )
 }
 
 
-export default AuthModal;
+export default AuthModalPortal;

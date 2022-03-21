@@ -10,10 +10,11 @@
     background-color: $color-seach-input-hover;
     cursor: pointer;
 }
-.red{
+.red {
     background: $color-search-input-error;
 }
 .loading {
     @include text-loading;
     color: $color-loading;
 }
+

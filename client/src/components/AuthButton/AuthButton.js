@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import AuthModal from '../AuthModal/AuthModal';
 import AuthService from '../../service/AuthService';
 import { AppContext } from '../../context/context';
+import AuthModalPortal from '../AuthModal/AuthModalPortal';
+import ReactDOM from 'react-dom';
 
 const AuthButton = () => {
     const [isVisible, setIsVisible] = useState(false);

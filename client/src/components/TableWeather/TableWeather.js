@@ -21,8 +21,8 @@ const TableWeather = () => {
         const { datetimeEpoch, temp, humidity, icon, windspeed } = data.days[i];
         newDataDays.push({ datetimeEpoch, temp, humidity, icon, windspeed })
     }
-    
-    let card = newDataDays.map(({datetimeEpoch, temp, humidity, icon, windspeed}) => 
+
+    let card = newDataDays.map(({ datetimeEpoch, temp, humidity, icon, windspeed }) => 
         <ForecastCard
             key={datetimeEpoch}
             humidity={humidity}

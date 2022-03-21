@@ -15,7 +15,10 @@ const WeatherCard = () => {
             </Typography>
         )
     }
-    const city = data.resolvedAddress.split(',')[0];
+    let city;
+    const pattern = /\d*\.\d*/;
+    pattern.test(data.resolvedAddress) ? city = data.resolvedAddress : city = data.resolvedAddress.split(',')[0];
+    console.log()
     return (
         <Box boxShadow={3} className="weather-card">
             <Typography variant='h6' >

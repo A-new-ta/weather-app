@@ -34,7 +34,7 @@ const SearchInput = () => {
                 {refreshings[1]}
             </div>
                 :
-            <></>}
+            <></>} 
         </>
         
     )
