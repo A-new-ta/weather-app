@@ -2,6 +2,9 @@
     width: 85%;
     height: 245px;
     margin-right: 10px;
+    @media (max-width: 967px) {
+        margin: 10px;
+    }
 }
 
 .leaflet-container {

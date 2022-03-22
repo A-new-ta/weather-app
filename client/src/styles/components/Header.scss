@@ -3,13 +3,34 @@
     justify-content: space-between;
     align-items: center;
     background-image: url('../../assets/header_background.jpg');
-    height: 180px;
+    min-height: 180px;
     padding: 0 40px;
     overflow: hidden;
     background-size: cover;
+    @media (max-width: 767px){
+        flex-wrap: wrap-reverse;
+        justify-content: space-evenly;
+    }
     .name {
         font-weight: 400;
         font-size: 2rem;
+        @media (max-width: 1199px){
+            display: none;
+        }
+    }
+}
+
+.button-block {
+    display: flex;
+    align-items: center;
+    @media (max-width: 967px) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+.switcher-block {
+    @media (max-width: 767px){
+        display: none;
     }
 }
 
@@ -17,4 +38,10 @@
     margin-right: 10px;
     border-radius: 20px;
     padding: 15px 20px;
+}
+
+.close-button .icon-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

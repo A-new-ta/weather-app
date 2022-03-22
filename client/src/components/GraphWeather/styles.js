@@ -1,12 +1,12 @@
 import { createStyles, makeStyles } from '@material-ui/core'
 
-export const useStyles = makeStyles(() =>
+export const useStyles = makeStyles((theme) =>
     createStyles({
         cartWrapper: {
             width: '85%',
             height: 200,
             marginRight: 10,
-            fontSize: '1rem'
+            fontSize: '1rem',
         },
         setting: {
             display: 'flex',
@@ -16,5 +16,6 @@ export const useStyles = makeStyles(() =>
         settingBtn: {
             width: 50,
         },
+    
     })
 )

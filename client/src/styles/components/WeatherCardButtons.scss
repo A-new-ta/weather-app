@@ -4,8 +4,20 @@
     justify-content: space-around;
     align-items: center;
     height: 200px;
+    @media (max-width: 967px) {
+        flex-direction: row;
+        height: auto;
+        margin: 5px;
+    }
+    
 }
 
 .weater-card-buttons .change-button {
     border-radius: 20px;
+    @media (max-width: 967px) {
+        margin: 10px 20px;
+    }
+    @media (max-width: 467px) {
+        margin: 10px 5px;
+    }
 }

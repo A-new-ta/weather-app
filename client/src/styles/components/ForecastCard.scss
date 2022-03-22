@@ -8,6 +8,32 @@
     border-radius: 20px;
     margin: 5px;
     background-color: $color-weather-card-bg;
+    @media (max-width: 1199px) {
+        max-width: 100px;
+    }
+    @media (max-width: 967px) {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: inherit;
+        width: auto;
+        height: auto;
+    }
+   
+    
+}
+
+.forecast-card-item {
+    .MuiTypography-h5, .MuiTypography-h6 {
+        @media (max-width: 1199px) {
+            font-size: 1.2rem;
+        }
+        @media (max-width: 967px) {
+            margin: 10px 5vw;
+        }
+        @media (max-width: 767px) {
+            font-size: 1rem;
+        }
+    }
 }
 
 .forecast-card.dark .forecast-card-item {

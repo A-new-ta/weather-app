@@ -1,8 +1,27 @@
 .search-form {
     display: flex;
+    @media (max-width: 1095px) {
+       margin-bottom: 10px;
+    }
+    @media (max-width: 767px) {
+        margin-bottom: 0px;
+     }
+    @media (max-width: 525px) {
+        flex-wrap: wrap;
+        justify-content: start;
+        margin-top: 5px;
+     }
     .MuiButton-outlined {
         margin-right: 10px;
         border-radius: 20px;
+    @media (max-width: 525px) {
+        margin-bottom: 10px;
+    }
+    }
+}
+.search-form .search-input {
+    @media (max-width: 525px) {
+        margin-bottom: 10px;
     }
 }
 

@@ -1,6 +1,22 @@
 .weather-card {
     padding: 10px;
     overflow: hidden;
-    min-width: 180px;
+    min-width: 200px;
     border-radius: 20px;
+    margin: 10px;
+    @media (max-width: 767px){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        .MuiTypography-h6, .MuiTypography-h5, .MuiTypography-h4{
+            margin: 0px 5px;
+            font-size: 1.3rem;
+        }
+    }
+    @media (max-width: 525px) {
+        .MuiTypography-h6, .MuiTypography-h5, .MuiTypography-h4{
+            font-size: 1rem;
+        }
+    }
 }

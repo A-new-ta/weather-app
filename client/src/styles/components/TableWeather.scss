@@ -4,4 +4,8 @@
     flex-basis: 85%;
     justify-content: space-around;
     margin-right: 10px;
+    @media (max-width: 967px) {
+        flex-direction: column;
+        margin: 10px;
+    }
 }
